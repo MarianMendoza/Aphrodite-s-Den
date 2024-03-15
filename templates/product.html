@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+
+<h2> {{ product["name"] }}</h2>
+<section id="products">
+    <figure>
+        {% set image_url = 'images/product-images/' %}
+        {% set image_url = image_url + product['img'] %}
+        {% set image_url = image_url + '.png' %}
+        <img src="{{url_for('static', filename=image_url ) }}" width=500px />
+    </figure>
+
+
+
+    <p> {{ product["description"] }}</p>
+    <p><a href="{{ url_for('add_to_cart', product_id = product['product_id']) }}">ADD TO CART</a> Price: {{
+        product["price"] }}</p>
+
+</section>
+<section id="review">
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <h3>Leave A Review!</h3>
+        {{ form.review( cols = 140, rows = 10) }}
+        <!-- Got this trick from -->
+        <br />
+        {{ form.submit( class = "btn")}}
+    </form>
+    <h2> Reviews</h2>
+
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Username</th>
+            <th>Review</th>
+        </tr>
+        {% for review in reviews%}
+        <tr>
+            {% set image_url = 'images/product-images/' %}
+            {% set image_url = image_url + review['img'] %}
+            {% set image_url = image_url + '.png' %}
+            <td><img src="{{url_for('static', filename=image_url ) }}" width=200px /></td>
+            <td> {{ review["product_name"] }}</td>
+            <td> {{ review["user_id"] }}</td>
+            <td> {{ review["review"] }}</td>
+
+        </tr>
+
+        {% endfor %}
+    </table>
+
+</section>
+
+
+{% endblock %}

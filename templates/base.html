@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf = 8">
+    <title>Aphrodite's Den</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'AD.css')}}" />
+    <meta name="viewport" content="width=device-width, initial-scale =1.0" />
+    <link rel="icon" href="{{url_for('static', filename = 'Ad.png')}}" />
+</head>
+
+<header>
+    <h1>Aphrodite's Den</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('shop')}}">SHOP</a></li>
+            <li><a href="{{ url_for('collections')}}">COLLECTIONS</a></li>
+            <li><a href="{{ url_for('cart')}}"> <img src="{{url_for('static', filename = './buttons/cart.png')}} "
+                        width=40px></a></li>
+            {% if g.user %}
+            <li> Welcome {{g.user}} </li>
+            <li><a href="{{url_for('logout') }}">LOGOUT</a></li>
+            {% else %}
+            <li><a href="{{ url_for('login')}}">LOGIN</a></li>
+            <li><a href="{{ url_for('signup')}}">SIGN UP</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+<main>
+
+    {% block main_content %}
+
+
+    {% endblock %}
+
+</main>
+
+<footer>
+    <p>&copy All images are edited, and taken by Marian Mendoza</p>
+
+</footer>
+
+</html>

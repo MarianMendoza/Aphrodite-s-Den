@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h2> Shipping Details </h2>
+<section id="account">
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.firstname.label }}
+            {{ form.firstname( class = "field", rows = 2) }}
+            {% for error in form.firstname.errors %}
+            {{ error }}
+            {% endfor %}
+        </p>
+        <br />
+        <p>
+            {{ form.lastname.label }}
+            {{ form.lastname(class = "field") }}
+            {% for error in form.lastname.errors %}
+            {{ error }}
+            {% endfor %}
+        </p>
+        <br />
+        <p>
+            {{ form.addressline1.label }}
+            {{ form.addressline1(class = "field") }}
+            {% for error in form.addressline1.errors %}
+            {{ error }}
+            {% endfor %}
+        </p>
+        <br />
+        <p>
+            {{ form.addressline2.label }}
+            {{ form.addressline2(class = "field") }}
+        </p>
+        <br />
+        <p>
+            {{ form.eircode.label }}
+            {{ form.eircode(class = "field") }}
+            {% for error in form.eircode.errors %}
+            {{ error }}
+            {% endfor %}
+        </p>
+        <br />
+        {{ form.submit(class = "btn") }}
+    </form>
+</section>
+{% endblock %}

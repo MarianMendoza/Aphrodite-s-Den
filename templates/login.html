@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h2>Login </h2>
+<section id="account">
+
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        <p>{{ form.user_id.label }}
+            {{ form.user_id( class = "field") }}
+            {% for error in form.user_id.errors %}
+            {{ error }}
+            {% endfor %}
+        </p>
+        <br />
+        <p>{{ form.password.label }}
+            {{ form.password( class = "field") }}
+            {% for error in form.password.errors %}
+            {{ error }}
+            {% endfor %}
+            <br>
+        </p>
+        <br />
+        <p> {{ form.submit( class = "btn") }} </p>
+
+    </form>
+</section>
+
+{% endblock %}

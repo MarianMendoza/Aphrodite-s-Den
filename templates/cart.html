@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<section id="cart">
+    <h2> Your Cart</h2>
+    {% if cart %}
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        {% for product_id in cart %}
+        <tr>
+            {% set image_url = 'images/product-images/' %}
+            {% set image_url = image_url + imgs[product_id] %}
+            {% set image_url = image_url + '.png' %}
+            <td><img src="{{url_for('static', filename=image_url ) }}" width=200px /></td>
+            <td>{{ names[product_id] }}</td>
+            <td>{{ prices[product_id] }}</td>
+            <td><a href="{{url_for('removeitem', product_id = product_id)}}"><img
+                        src="{{url_for('static', filename = './buttons/minus-circle.svg')}}"></a>{{ cart[product_id]
+                }}<a href="{{url_for('add_to_cart', product_id = product_id)}}"><img
+                        src="{{url_for('static', filename = './buttons/plus-circle.svg')}}"></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p>Total: {{ total }}</p>
+    <ul>
+        <li class="button"><a href="{{ url_for('finalisecart')}}">NEXT</a></li>
+    </ul>
+    {% else %}
+    <p>Your Cart Is Empty!</p>
+    {% endif %}
+
+
+
+    {% endblock %}

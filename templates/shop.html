@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block main_content %}
+<div id="picture">
+
+</div>
+<h2>Products</h2>
+<section id="shop">
+        {% for product in products%}
+        <section id="product">
+                <p>{{ product["name"] }}</p>
+                {% set image_url = 'images/product-images/' %}
+                {% set image_url = image_url + product['img'] %}
+                {% set image_url = image_url + '.png' %}
+                <img src="{{url_for('static', filename=image_url ) }}" width='400px' />
+                <br />
+                {{ product["price"] }}
+                <ul>
+                        <li class="button"><a href="{{ url_for('product', product_id = product['product_id']) }}"> See
+                                        Details</a></li>
+                </ul>
+        </section>
+        {% endfor %}
+
+</section>
+{% endblock %}
